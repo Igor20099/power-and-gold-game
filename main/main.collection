@@ -1,4 +1,13 @@
 name: "main"
+instances {
+  id: "start_cell"
+  prototype: "/main/assets/game_objects/cells/start_cell.go"
+  position {
+    x: 300.0
+    y: 50.0
+    z: 0.2
+  }
+}
 scale_along_z: 0
 embedded_instances {
   id: "bg"
@@ -19,4 +28,77 @@ embedded_instances {
     y: 215.0
     z: 0.1
   }
+}
+embedded_instances {
+  id: "player"
+  data: "components {\n"
+  "  id: \"player\"\n"
+  "  component: \"/main/assets/scripts/player.script\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"sprite\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"player\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/main/assets/atlasses/player.atlas\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "  position {\n"
+  "    z: 0.2\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 300.0
+    y: 63.0
+    z: 0.4
+  }
+}
+embedded_instances {
+  id: "cells_creator"
+  data: "components {\n"
+  "  id: \"cells_creator\"\n"
+  "  component: \"/main/assets/scripts/cells_creator.script\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"battle_factory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/main/assets/game_objects/cells/battle_cell.go\\\"\\n"
+  "\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"chest_factory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/main/assets/game_objects/cells/chest_cell.go\\\"\\n"
+  "\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"event_factory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/main/assets/game_objects/cells/event_cell.go\\\"\\n"
+  "\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"mercenary_factory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/main/assets/game_objects/cells/mercenary_cell.go\\\"\\n"
+  "\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"shop_factory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/main/assets/game_objects/cells/shop_cell.go\\\"\\n"
+  "\"\n"
+  "}\n"
+  ""
+}
+embedded_instances {
+  id: "dice"
+  data: "components {\n"
+  "  id: \"dice\"\n"
+  "  component: \"/main/assets/gui/dice.gui\"\n"
+  "}\n"
+  ""
 }

@@ -8,6 +8,9 @@ embedded_components {
   "  texture: \"/main/assets/atlasses/cell.atlas\"\n"
   "}\n"
   ""
+  position {
+    z: 0.2
+  }
 }
 embedded_components {
   id: "sprite1"
@@ -20,7 +23,7 @@ embedded_components {
   "}\n"
   ""
   position {
-    z: 0.2
+    z: 0.3
   }
   scale {
     x: 1.5

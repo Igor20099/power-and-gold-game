@@ -1,0 +1,41 @@
+images {
+  image: "/main/assets/sprites/dieWhite_border1.png"
+}
+images {
+  image: "/main/assets/sprites/dieWhite_border2.png"
+}
+images {
+  image: "/main/assets/sprites/dieWhite_border3.png"
+}
+images {
+  image: "/main/assets/sprites/dieWhite_border4.png"
+}
+images {
+  image: "/main/assets/sprites/dieWhite_border5.png"
+}
+images {
+  image: "/main/assets/sprites/dieWhite_border6.png"
+}
+animations {
+  id: "dice_anim"
+  images {
+    image: "/main/assets/sprites/dieWhite_border1.png"
+  }
+  images {
+    image: "/main/assets/sprites/dieWhite_border2.png"
+  }
+  images {
+    image: "/main/assets/sprites/dieWhite_border3.png"
+  }
+  images {
+    image: "/main/assets/sprites/dieWhite_border4.png"
+  }
+  images {
+    image: "/main/assets/sprites/dieWhite_border5.png"
+  }
+  images {
+    image: "/main/assets/sprites/dieWhite_border6.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+}
+extrude_borders: 2

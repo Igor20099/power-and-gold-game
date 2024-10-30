@@ -1,5 +1,5 @@
 font: "/main/assets/fonts/18965.ttf"
 material: "/builtins/fonts/font.material"
-size: 14
+size: 22
 all_chars: true
 characters: " !\"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
