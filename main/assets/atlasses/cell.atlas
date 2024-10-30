@@ -1,0 +1,19 @@
+images {
+  image: "/main/assets/sprites/cell.png"
+}
+images {
+  image: "/main/assets/sprites/swords.png"
+}
+images {
+  image: "/main/assets/sprites/event.png"
+}
+images {
+  image: "/main/assets/sprites/coin.png"
+}
+images {
+  image: "/main/assets/sprites/chest.png"
+}
+images {
+  image: "/main/assets/sprites/tent.png"
+}
+extrude_borders: 2

@@ -1,0 +1,4 @@
+images {
+  image: "/main/assets/sprites/bg.png"
+}
+extrude_borders: 2
