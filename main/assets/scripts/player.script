@@ -1,7 +1,7 @@
 local START_POS_X =  300
 local END_POS_X = 300 + 64 * 5
-local START_POS_Y =  50
-local END_POX_Y = 50 + 64 * 5
+local START_POS_Y =  63
+local END_POS_Y = 63 + 64 * 5
 
 function init(self)
 	self.direction = hash('right')
@@ -32,27 +32,105 @@ function on_message(self, message_id, message, sender)
 	if message_id == hash('steps') then
 
 		local pos = go.get_position()
-		pos.x = pos.x  + 64 * message.steps
-		----
-		if self.direction == hash('right') and pos.x > END_POS_X then
-			local pos_ost = pos.x - END_POS_X
-			go.animate('.', 'position.x', go.PLAYBACK_ONCE_FORWARD, END_POS_X, go.EASING_LINEAR, 1,0,function()
-				sprite.set_hflip('#sprite', true) 
-				go.animate('.', 'position.y', go.PLAYBACK_ONCE_FORWARD, pos_ost , go.EASING_LINEAR, 1,0,function()
-					self.direction = hash('up')
-					msg.post('/dice#dice', 'show_btn')
-
-				 end)
-			end)
-			
-
-		elseif self.direction == hash('right') then
-			go.animate('.', 'position.x', go.PLAYBACK_ONCE_FORWARD, pos.x, go.EASING_LINEAR, 1,0,function() 
-				msg.post('/dice#dice', 'show_btn')
-			end)
-		end
+		local delay = 0.2 * message.steps
 		
+		print(pos.x)
+		print(END_POS_X)
 
+		if self.direction == hash('right') then
+			pos.x = pos.x  + 64 * message.steps
+			if pos.x >= END_POS_X then
+				local pos_ost = pos.x - END_POS_X
+				delay = delay - pos_ost / 64 * 0.2
+				local delay_ost = pos_ost / 64 * 0.2 
+				print(pos_ost)
+				go.animate('.', 'position.x', go.PLAYBACK_ONCE_FORWARD, END_POS_X, go.EASING_LINEAR, delay,0,function()
+					sprite.set_hflip('#sprite', true) 
+					go.animate('.', 'position.y', go.PLAYBACK_ONCE_FORWARD,pos.y + pos_ost , go.EASING_LINEAR, delay_ost,0,function()
+						self.direction = hash('up')
+						msg.post('/dice#dice', 'show_btn')
+
+					end)
+				end)
+
+
+			else
+				go.animate('.', 'position.x', go.PLAYBACK_ONCE_FORWARD, pos.x, go.EASING_LINEAR, delay,0,function() 
+					msg.post('/dice#dice', 'show_btn')
+				end)
+			end
+		elseif self.direction == hash('up') then
+			pos.y = pos.y  + 64 * message.steps
+			if  pos.y >= END_POS_Y then
+				local pos_ost = pos.y - END_POS_Y
+				delay = delay - pos_ost / 64 * 0.2
+				local delay_ost = pos_ost / 64 * 0.2 
+				print(pos_ost)
+				go.animate('.', 'position.y', go.PLAYBACK_ONCE_FORWARD, END_POS_Y, go.EASING_LINEAR, delay,0,function()
+					go.animate('.', 'position.x', go.PLAYBACK_ONCE_FORWARD,pos.x - pos_ost , go.EASING_LINEAR, delay_ost,0,function()
+						self.direction = hash('left')
+						msg.post('/dice#dice', 'show_btn')
+
+					end)
+				end)
+			else
+
+				go.animate('.', 'position.y', go.PLAYBACK_ONCE_FORWARD, pos.y, go.EASING_LINEAR, delay,0,function() 
+					msg.post('/dice#dice', 'show_btn')
+				end)
+
+			end
+		elseif self.direction == hash('left') then
+			pos.x = pos.x  - 64 * message.steps
+			if  pos.x <= START_POS_X then
+				local pos_ost = START_POS_X - pos.x
+				delay = delay - pos_ost / 64 * 0.2
+				local delay_ost = pos_ost / 64 * 0.2 
+				print(pos_ost)
+				go.animate('.', 'position.x', go.PLAYBACK_ONCE_FORWARD, START_POS_X, go.EASING_LINEAR, delay,0,function()
+					sprite.set_hflip('#sprite', false) 
+					go.animate('.', 'position.y', go.PLAYBACK_ONCE_FORWARD,pos.y - pos_ost , go.EASING_LINEAR, delay_ost,0,function()
+						self.direction = hash('down')
+						msg.post('/dice#dice', 'show_btn')
+
+					end)
+				end)
+			else
+
+				go.animate('.', 'position.x', go.PLAYBACK_ONCE_FORWARD, pos.x, go.EASING_LINEAR, delay,0,function() 
+					msg.post('/dice#dice', 'show_btn')
+				end)
+
+			end
+		elseif self.direction == hash('down') then
+			pos.y = pos.y  - 64 * message.steps
+			if  pos.y <= START_POS_Y then
+				local pos_ost = START_POS_Y - pos.y
+				delay = delay - pos_ost / 64 * 0.2
+				local delay_ost = pos_ost / 64 * 0.2 
+				print(pos_ost)
+				go.animate('.', 'position.y', go.PLAYBACK_ONCE_FORWARD, START_POS_Y, go.EASING_LINEAR, delay,0,function()
+					sprite.set_hflip('#sprite', false) 
+					go.animate('.', 'position.x', go.PLAYBACK_ONCE_FORWARD,pos.x + pos_ost , go.EASING_LINEAR, delay_ost,0,function()
+						self.direction = hash('right')
+						msg.post('/dice#dice', 'show_btn')
+
+					end)
+				end)
+			else
+
+				go.animate('.', 'position.y', go.PLAYBACK_ONCE_FORWARD, pos.y, go.EASING_LINEAR, delay,0,function() 
+					msg.post('/dice#dice', 'show_btn')
+				end)
+
+			end
+			
+			
+		end
+				----
+		
+		
+		
 		
 	end
 end
